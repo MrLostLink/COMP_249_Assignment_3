@@ -24,7 +24,7 @@ public class ConcordiaDatabase {
 				memberCount++;
 			}
 	
-	//Implemented to remove user from Array, using ArrayUtils lib which has been imported
+	//Implemented to remove user from Array, using ArrayUtils Apache class which has been imported
 	public boolean removeUser(String firstName, String lastName, String concordiaID){
 		
 		int index = 0;

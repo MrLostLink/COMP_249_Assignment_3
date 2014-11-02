@@ -12,6 +12,8 @@
  * NOTE: advanceToNextMonth() is implemented differently in this program, 
  * 		implemented by totalMonth() in the ConcordiaDatabase class, keeping
  * 		track of the hours in assigned contracts.
+ * 	
+ * 		ALSO NOTE THAT APACHE LANG HAS BEEN IMPORTED IN CONCORDIADATABASE CLASS
  * 
  ********************************************************************************* 
  */
@@ -397,6 +399,7 @@ public class Driver {
 			break;
 			}
 		case 3:{
+
 			if(concordiaMember instanceof StaffMembers){
 				modifyStaff(concordiaMember);
 				}
@@ -427,7 +430,7 @@ public class Driver {
 	public static void modifyStaff(ConcordiaMembers concordiaMember){
 		Scanner myKey = new Scanner(System.in);
 		
-		String status = promptStudentStatus();
+		String status = promptStaffStatus();
 		((StaffMembers) concordiaMember).setStatus(StaffStatus.valueOf(status));
 		int contractHours =0;
 			if(status == "TEMP_STAFF"){
