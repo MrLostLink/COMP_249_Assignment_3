@@ -21,6 +21,8 @@ public class Students extends ConcordiaMembers implements ConcordiaInterface{
 		this.contractHours = contractHours;
 		}
 	
+	
+	
 	//Getters and Setters
 	public StudentStatus getStatus() {
 		return status;
@@ -75,6 +77,7 @@ public class Students extends ConcordiaMembers implements ConcordiaInterface{
 		return userEntry;
 		
 	}
+	
 	//Returns formated information using String Builder
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
