@@ -140,6 +140,10 @@ public class ConcordiaDatabase {
 			if(member!= null)
 			sb.append(member.toString()).append("Payment: ").append(df.format(member.payStub())).append("\n");
 		}
+		
+		if(sb.length()==0){
+			sb.append("0.00");
+		}
 		return sb.toString();
 	}
 

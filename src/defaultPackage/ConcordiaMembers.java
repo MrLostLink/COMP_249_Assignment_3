@@ -2,19 +2,21 @@ package defaultPackage;
 
 public  abstract class ConcordiaMembers {
 
+		//Parent class  which links all the child classes due to the similarities in members
 
+		// declaring constants and variables
 		private String firstName;		
 		private String lastName;
 		private String concordiaID;		
 		
-		
+		//constructors
 		ConcordiaMembers(String firstName, String lastName, String concordiaID){
 			this.firstName=firstName;
 			this.lastName=lastName;
 			this.concordiaID=concordiaID;
-			
 		}
-		
+
+		//Getters and Setters
 		public String getFirstName() {
 			return firstName;
 		}
@@ -44,9 +46,9 @@ public  abstract class ConcordiaMembers {
 			this.concordiaID = concordiaID;
 		}
 
+		//Abstract classes implemented on Child Classes; Check Child classes for descriptions
 		public abstract String viewFullInfo();
-		
-
+	
 		public abstract double payment();
 
 		public abstract double payStub(); 

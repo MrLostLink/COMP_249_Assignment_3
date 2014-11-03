@@ -40,17 +40,18 @@ public class FacultyMembers extends ConcordiaMembers implements ConcordiaInterfa
 		return ( (hoursWorked*hourlyRate) + commission(firstClassSize) + commission(secondClassSize) );
 	}
 	
+	//Using Stringbuilder, returns String in proper format 
 	public String toString(){
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append(getFirstName()).append(" ");
 		sb.append(getLastName()).append(" ");
 		sb.append(getConcordiaID()).append(" ");
-		sb.append(getStatus().toString()).append("\n");
+		sb.append(getStatus().toString()).append(" Faculty Member ").append("\n");
 		
 		return sb.toString();
 	}
-		
+	//Verifies if Member has enough hours and returns the amount of hours worked
 	public int hoursWorked(){
 		
 		System.out.print("How many hours has " + getFirstName() + " worked? ");
@@ -72,7 +73,7 @@ public class FacultyMembers extends ConcordiaMembers implements ConcordiaInterfa
 		return userEntry;
 		
 	}
-	
+	//Returns commission based on the class size
 	public double commission(int classSize){
 		if(classSize>=40 && classSize<=60){
 			return commissionTier1;
@@ -82,7 +83,7 @@ public class FacultyMembers extends ConcordiaMembers implements ConcordiaInterfa
 			}
 		return 0;
 	}
-	
+	//Getter and Setters
 	public FacultyStatus getStatus() {
 		return status;
 	}
@@ -115,12 +116,12 @@ public class FacultyMembers extends ConcordiaMembers implements ConcordiaInterfa
 		this.contractHours = contractHours;
 	}
 
-	
+	//Prints Full Information using String Builder. Unlike toString() method, viewFullInfo() returns attributes as well
 	public String viewFullInfo() {
 
 			StringBuilder sb = new StringBuilder();
 			sb.append(getFirstName()).append(" ").append(getLastName()).append(" ");
-			sb.append(getConcordiaID()).append(" ").append(getStatus()).append(" ");
+			sb.append(getConcordiaID()).append(" ").append(getStatus()).append(" ").append("Faculty Member ");
 			
 			if(getStatus() == FacultyStatus.PERMANENT){
 				sb.append("Annual Salary: ").append(annualSalary);
@@ -138,6 +139,7 @@ public class FacultyMembers extends ConcordiaMembers implements ConcordiaInterfa
 			return sb.toString();
 		}
 	
+	//Similar to payment() but doesn't change members contract hours and only returns the amount to be gained in current month
 	public double payStub(){
 			int hoursWorked;
 			if (status == FacultyStatus.PERMANENT){

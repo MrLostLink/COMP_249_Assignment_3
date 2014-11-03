@@ -47,13 +47,17 @@ public class Driver {
 				+"Alpha-Test v0.1 || (Supports up to 100 members)\n"
 				+ "--------------------------------------------------------");
 		
-		Students student = new Students("1", "1", "1", StudentStatus.ALUMNI,0);
-		FacultyMembers faculty = new FacultyMembers("2", "2", "2", FacultyStatus.PERMANENT,0,0,0);
-		StaffMembers staff = new StaffMembers("3","3","3", StaffStatus.PERM_STAFF,0,0);
-		
-		database.addMember(student);
-		database.addMember(faculty);
-		database.addMember(staff);
+		//Pre-Defining Members of the Concordia Payment System
+		Students student1 = new Students("Mandeep", "Tahim", "6935478", StudentStatus.GRADUATE_TA,100);
+		Students student2= new Students("Manpreet", "Tahim", "123456", StudentStatus.ALUMNI,0);
+		FacultyMembers faculty1 = new FacultyMembers("Shareef", "Serhan", "6804098", FacultyStatus.PERMANENT,0,0,0);
+		FacultyMembers faculty2 = new FacultyMembers("Ronnie", "Pang", "7041551", FacultyStatus.PART_TIME,150,60,20);
+		StaffMembers staff1 = new StaffMembers("Cheery","Berry","987654", StaffStatus.OTHER,150);
+		database.addMember(staff1);
+		database.addMember(faculty1);
+		database.addMember(faculty2);
+		database.addMember(student1);
+		database.addMember(student2);
 		
 		//While Loop (Main Menu) prompting users for options until user request to terminate program
 		while (quit == false){
@@ -217,12 +221,7 @@ public class Driver {
 					System.out.print("How many hours does this individual have in his contract? ");
 					contractHours = myKey.nextInt();
 				}
-				int commission =0;
-				if(status==StaffStatus.OTHER){
-					System.out.print("How much comission will this individual receive? ");
-					commission = myKey.nextInt();
-				}
-				StaffMembers enteredStaff = new StaffMembers(firstName, lastName, concordiaID, status, contractHours, commission);
+				StaffMembers enteredStaff = new StaffMembers(firstName, lastName, concordiaID, status, contractHours);
 				database.addMember(enteredStaff);
 				successful = true;
 				break;
@@ -437,13 +436,7 @@ public class Driver {
 				System.out.print("How many hours does this individual have in his contract? ");
 				contractHours = myKey.nextInt();
 			}
-		int commission =0;
-			if(status== "OTHER"){
-				System.out.print("How much comission will this individual receive? ");
-				commission = myKey.nextInt();
-			}
 		((StaffMembers) concordiaMember).setContractHours(contractHours);
-		((StaffMembers) concordiaMember).setCommission(commission);
 		}
 	
 	public static void modifyStudent(ConcordiaMembers concordiaMember){
