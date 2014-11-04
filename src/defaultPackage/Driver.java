@@ -46,7 +46,7 @@ public class Driver {
 				+ "\nPress 4 to Search/View Member\nPress 5 for all PayStubs of the Current Month"
 				+ "\nPress 6 to Calculate Total Amount to be Paid"
 				+ "\nPress 7 to Verify if a Member is Qualified to be a TA"
-				+ "\nPress 8 to modify Member"
+				+ "\nPress 8 to Modify Member"
 				+ "\nPress 0 to Quit and Save\n";
 
 		//Welcome Message
@@ -242,9 +242,7 @@ public class Driver {
 			}
 		}
 		while(successful==false);
-
-		System.out.println(firstName + " " + lastName + " has been added successfully.\n");
-	}
+}
 		//Method to Modify User; checks first if member is in the database, then proceeds to modify()
 	public static void modifyUser(ConcordiaDatabase database){
 		Scanner myKey = new Scanner(System.in);

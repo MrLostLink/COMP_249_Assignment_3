@@ -22,11 +22,16 @@ public class ConcordiaDatabase implements Serializable{
 	}
 	
 	//Implemented to add member to Array
-	public void addMember(Object o){
-				concordiaMembers[memberCount]=(ConcordiaMembers) o;
-				memberCount++;
+	public void addMember(ConcordiaMembers o){
+			if(searchMember(o.getFirstName(),o.getLastName(),o.getConcordiaID())!=null){
+				System.out.println("User is already in the system!");
 			}
-	
+			else{
+			concordiaMembers[memberCount]=(ConcordiaMembers) o;
+				memberCount++;
+				System.out.println("User has been added successfully!");
+			}
+	}
 	//Implemented to remove user from Array, using ArrayUtils Apache class which has been imported
 	public boolean removeUser(String firstName, String lastName, String concordiaID){
 		
