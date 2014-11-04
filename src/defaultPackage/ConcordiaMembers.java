@@ -1,6 +1,8 @@
 package defaultPackage;
 
-public  abstract class ConcordiaMembers {
+import java.io.Serializable;
+
+public  abstract class ConcordiaMembers implements Serializable{
 
 		//Parent class  which links all the child classes due to the similarities in members
 
@@ -8,6 +10,9 @@ public  abstract class ConcordiaMembers {
 		private String firstName;		
 		private String lastName;
 		private String concordiaID;		
+		private static final long serialVersionUID = 1L;
+	
+		
 		
 		//constructors
 		ConcordiaMembers(String firstName, String lastName, String concordiaID){

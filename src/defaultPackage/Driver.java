@@ -20,6 +20,13 @@
 
 package defaultPackage;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.text.DecimalFormat;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -33,21 +40,22 @@ public class Driver {
 		int userInput = 0;
 		boolean quit = false;
 		Scanner myKey = new Scanner(System.in);
-		ConcordiaDatabase database = new ConcordiaDatabase();
+		ConcordiaDatabase database = readFromSerializedFile(new File("concordiaDatabase.dat"));
+		
 		String menu = "\nMenu\nPress 1 to List User(s)\nPress 2 to Add User(s)\nPress 3 to Remove a User"
 				+ "\nPress 4 to Search/View Member\nPress 5 for all PayStubs of the Current Month"
 				+ "\nPress 6 to Calculate Total Amount to be Paid"
 				+ "\nPress 7 to Verify if a Member is Qualified to be a TA"
 				+ "\nPress 8 to modify Member"
-				+ "\nPress 0 to Quit\n";
+				+ "\nPress 0 to Quit and Save\n";
 
 		//Welcome Message
 		System.out.println("Welcome to the Concordia Payment System!\n\n"
 				+ "--------------------------------------------------------\n"
 				+"Alpha-Test v0.1 || (Supports up to 100 members)\n"
 				+ "--------------------------------------------------------");
-		
-		//Pre-Defining Members of the Concordia Payment System
+		if(database == null){
+			database = new ConcordiaDatabase();
 		Students student1 = new Students("Mandeep", "Tahim", "6935478", StudentStatus.GRADUATE_TA,100);
 		Students student2= new Students("Manpreet", "Tahim", "123456", StudentStatus.ALUMNI,0);
 		FacultyMembers faculty1 = new FacultyMembers("Shareef", "Serhan", "6804098", FacultyStatus.PERMANENT,0,0,0);
@@ -58,7 +66,7 @@ public class Driver {
 		database.addMember(faculty2);
 		database.addMember(student1);
 		database.addMember(student2);
-		
+		}
 		//While Loop (Main Menu) prompting users for options until user request to terminate program
 		while (quit == false){
 			try{
@@ -151,8 +159,9 @@ public class Driver {
 				System.out.println("I'm sorry, I didn't understand what you entered. Try again!\n");
 				break;
 			}
-
 		}
+		
+		writeToSerializedFile(new File("concordiaDatabase.dat"), database);
 		//Termination Message
 	System.out.println("\nThank you for testing the Concordia Payment System!");
 	
@@ -472,5 +481,33 @@ public class Driver {
 		((FacultyMembers) concordiaMember).setFirstClassSize(firstClassSize);
 		((FacultyMembers) concordiaMember).setSecondClassSize(secondClassSize);
 	}
-} 
-// End of Driver Class
+
+	private static void writeToSerializedFile(File file, ConcordiaDatabase database) {
+	    try {
+	        ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream(file));
+	        output.writeObject(database);
+	    } catch (FileNotFoundException e) {
+	        e.printStackTrace();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	}
+	
+	private static ConcordiaDatabase readFromSerializedFile(File file) {
+	    ConcordiaDatabase database = null;
+	    try {
+	        ObjectInputStream input = new ObjectInputStream(new FileInputStream(file));
+	        database = (ConcordiaDatabase) input.readObject();
+	    } catch (FileNotFoundException e) {
+	        e.printStackTrace();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    } catch (ClassNotFoundException e) {
+	       e.printStackTrace();
+	    }
+	    return database;
+	}
+
+	
+
+} // End of Driver Class

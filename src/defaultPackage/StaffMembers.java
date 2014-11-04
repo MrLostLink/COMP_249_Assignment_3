@@ -1,19 +1,21 @@
 package defaultPackage;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class StaffMembers extends ConcordiaMembers implements ConcordiaInterface {
+public class StaffMembers extends ConcordiaMembers implements ConcordiaInterface, Serializable {
 		
 		//Variables and Constants
 		private StaffStatus status;
 		private double contractHours;
-		Scanner myKey = new Scanner(System.in);
 		final private double hourlyRate= 11.50;
 		final private double annualSalary = 65000;
-		private double commission;
-
-		
+		private static final long serialVersionUID = 1L;
+	
+	
 		//Constructor 
+		
+		
 		public StaffMembers(String Firstname,String Secondname,String id, StaffStatus status, double contractHours){
 		
 		super(Firstname,Secondname,id);
@@ -47,6 +49,7 @@ public class StaffMembers extends ConcordiaMembers implements ConcordiaInterface
 			}
 		//Returns hours worked, verifying if the member has enough hours to be paid for in his contract
 		public int hoursWorked(){
+			Scanner myKey = new Scanner(System.in);
 			System.out.print("How many hours has " + getFirstName() + " worked? ");
 			int userEntry = myKey.nextInt();
 			boolean entry = false;
@@ -134,6 +137,7 @@ public class StaffMembers extends ConcordiaMembers implements ConcordiaInterface
 			}
 		//Determines commission percentage defined by Admin (user)
 		public double commission(){
+			Scanner myKey = new Scanner(System.in);
 			System.out.print("What is the commission of "+ getFirstName() +" for the current month in percentage? ");
 			double commission = myKey.nextDouble();
 			return commission;

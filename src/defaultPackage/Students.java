@@ -1,16 +1,18 @@
 package defaultPackage;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
-public class Students extends ConcordiaMembers implements ConcordiaInterface{
+public class Students extends ConcordiaMembers implements ConcordiaInterface, Serializable{
+
 	//Declaring Constants and Variables
 	private StudentStatus status;
-	boolean entry;
 	private int contractHours;
 	final private double HOURLY_RATE = 11.50;
 	final private double HOURLY_RATE_GRADUATE = HOURLY_RATE*1.2;
-	static Scanner myKey = new Scanner(System.in);
+	private static final long serialVersionUID = 1L;
+	
 	
 	//Constructor
 	public Students(String firstName, String lastName, String concordiaID, StudentStatus status, int contractHours) {
@@ -58,9 +60,10 @@ public class Students extends ConcordiaMembers implements ConcordiaInterface{
 	
 	//Returns hours worked, verifying if the member has enough hours to be paid for in his contract
 	public int hoursWorked(){
+		Scanner myKey = new Scanner(System.in);
 		System.out.print("How many hours has " + getFirstName() + " worked? ");
 		int userEntry = myKey.nextInt();
-		entry = false;
+		boolean entry = false;
 		
 		while(entry==false){
 			

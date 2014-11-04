@@ -1,15 +1,18 @@
 package defaultPackage;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class FacultyMembers extends ConcordiaMembers implements ConcordiaInterface {
+public class FacultyMembers extends ConcordiaMembers implements ConcordiaInterface, Serializable {
+
 
 	//Declaring Constants and Variables
 	FacultyStatus status;
 	private int firstClassSize;
 	private int secondClassSize;
 	private int contractHours;
-	Scanner myKey = new Scanner(System.in);
+	private static final long serialVersionUID = 1L;
+	
 	
 	final private double hourlyRate = 20;
 	final private double annualSalary = 70000;
@@ -53,7 +56,7 @@ public class FacultyMembers extends ConcordiaMembers implements ConcordiaInterfa
 	}
 	//Verifies if Member has enough hours and returns the amount of hours worked
 	public int hoursWorked(){
-		
+		Scanner myKey = new Scanner(System.in);
 		System.out.print("How many hours has " + getFirstName() + " worked? ");
 		int userEntry = myKey.nextInt();
 		boolean entry=false;

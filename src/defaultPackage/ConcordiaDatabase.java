@@ -1,17 +1,20 @@
 package defaultPackage;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
 import org.apache.commons.lang3.ArrayUtils;
 
-public class ConcordiaDatabase {
+public class ConcordiaDatabase implements Serializable{
+
 
 	//Declaring Constants and Variables
 	private ConcordiaMembers[] concordiaMembers;
-	Scanner myKey = new Scanner(System.in);
 	final private int MAX_ARRAY_SIZE =100;
 	private int memberCount=0;
+	private static final long serialVersionUID = 1L;
+	
 	
 	//Contructor Class
 	public ConcordiaDatabase() {
@@ -44,6 +47,7 @@ public class ConcordiaDatabase {
 	
 	//Implemented to list select Users
 	public String listDatabase(){
+		Scanner myKey = new Scanner(System.in);
 		StringBuilder sb = new StringBuilder();
 		boolean validEntry = false;
 		int userOption;
